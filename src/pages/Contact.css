@@ -1,0 +1,94 @@
+.contact-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a, #312e81);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 80px;
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+.contact-title {
+  font-size: 3rem;
+  background: linear-gradient(90deg, #38bdf8, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 10px #38bdf8;
+  }
+  100% {
+    text-shadow: 0 0 20px #a78bfa;
+  }
+}
+
+.contact-subtext {
+  text-align: center;
+  max-width: 600px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  color: #cbd5e1;
+}
+
+.contact-form {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 40px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 10px;
+  padding: 12px 15px;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  resize: none;
+  transition: 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  box-shadow: 0 0 10px #38bdf8;
+}
+
+.submit-btn {
+  background: linear-gradient(90deg, #38bdf8, #a78bfa);
+  border: none;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(90deg, #a78bfa, #38bdf8);
+}
+
+.status-msg {
+  margin-top: 15px;
+  text-align: center;
+  color: #93c5fd;
+  font-size: 1rem;
+  font-weight: 500;
+}
+*{
+    padding: 0%;
+    margin: 0%;
+}
