@@ -62,11 +62,107 @@ const About = () => {
         </motion.div>
       </div>
 
+      {/* Stats Section */}
+      <motion.div 
+        className="stats-section"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="stat-item">
+          <h3>100%</h3>
+          <p>Accuracy</p>
+        </div>
+        <div className="stat-item">
+          <h3>24/7</h3>
+          <p>Monitoring</p>
+        </div>
+        <div className="stat-item">
+          <h3>99.9%</h3>
+          <p>Uptime</p>
+        </div>
+        <div className="stat-item">
+          <h3>50+</h3>
+          <p>Devices Supported</p>
+        </div>
+      </motion.div>
+
+      {/* How It Works Section */}
+      <motion.div 
+        className="how-it-works"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        <h2>How It Works</h2>
+        <div className="steps-container">
+          <div className="step">
+            <div className="step-number">1</div>
+            <h3>Device Setup</h3>
+            <p>Connect ESP32 devices to your network and register them in the system.</p>
+          </div>
+          <div className="step">
+            <div className="step-number">2</div>
+            <h3>Assign Devices</h3>
+            <p>Admin assigns devices to specific users or assets for tracking.</p>
+          </div>
+          <div className="step">
+            <div className="step-number">3</div>
+            <h3>Real-time Tracking</h3>
+            <p>Monitor locations in real-time through the intuitive dashboard.</p>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Team Section */}
+      <motion.div 
+        className="team-section"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+      >
+        <h2>Our Team</h2>
+        <div className="team-members">
+          <div className="team-member">
+            <div className="member-avatar">👨‍💻</div>
+            <h3>John Doe</h3>
+            <p>Lead Developer</p>
+          </div>
+          <div className="team-member">
+            <div className="member-avatar">🎨</div>
+            <h3>Jane Smith</h3>
+            <p>UI/UX Designer</p>
+          </div>
+          <div className="team-member">
+            <div className="member-avatar">🔧</div>
+            <h3>Mike Johnson</h3>
+            <p>Hardware Engineer</p>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Call to Action */}
+      <motion.div 
+        className="cta-section"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+      >
+        <h2>Ready to Get Started?</h2>
+        <p>Join hundreds of businesses already using Smart Tracker for their asset management needs.</p>
+        <button className="cta-button">Contact Us Today</button>
+      </motion.div>
+
       <motion.div
         className="about-footer"
         initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 1 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.8 }}
       >
         <h3>🚀 Built With</h3>
         <ul>

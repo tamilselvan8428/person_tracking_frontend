@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import axios from "axios";
+import emailjs from '@emailjs/browser';
 import "./Contact.css";
 
+// Initialize EmailJS with your public key
+const EMAILJS_SERVICE_ID = 'service_86s12e8';
+const EMAILJS_TEMPLATE_ID = 'template_lqiq4hp';
+const EMAILJS_PUBLIC_KEY = 'PVvjgTLofvDoeyXeC';
+
 const Contact = () => {
+  const form = useRef();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    description: "",
+    message: "",
   });
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState({ text: "", type: "" });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,17 +25,39 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    setStatus({ text: "Sending message...", type: "info" });
+
     try {
-      const res = await axios.post("http://localhost:5005/sendMail", formData);
-      if (res.data.success) {
-        setStatus("✅ Mail sent successfully!");
-        setFormData({ name: "", email: "", phone: "", description: "" });
+      const result = await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        form.current,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      if (result.status === 200) {
+        setStatus({ 
+          text: "✅ Message sent successfully!", 
+          type: "success" 
+        });
+        setFormData({ 
+          name: "", 
+          email: "", 
+          phone: "", 
+          message: "" 
+        });
       } else {
-        setStatus("❌ Failed to send mail.");
+        throw new Error('Failed to send message');
       }
-    } catch (err) {
-      console.error(err);
-      setStatus("❌ Error sending mail.");
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setStatus({ 
+        text: "❌ Failed to send message. Please try again.", 
+        type: "error" 
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -53,6 +82,7 @@ const Contact = () => {
       </motion.p>
 
       <motion.form
+        ref={form}
         className="contact-form"
         onSubmit={handleSubmit}
         initial={{ opacity: 0, y: 50 }}
@@ -87,23 +117,38 @@ const Contact = () => {
         />
 
         <textarea
-          name="description"
+          name="message"
           placeholder="Write your message..."
-          value={formData.description}
+          value={formData.message}
           onChange={handleChange}
           required
+          rows="5"
         ></textarea>
 
         <motion.button
           type="submit"
           className="submit-btn"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          disabled={isLoading}
+          whileHover={{ scale: isLoading ? 1 : 1.05 }}
+          whileTap={{ scale: isLoading ? 1 : 0.95 }}
+          style={{
+            cursor: isLoading ? 'not-allowed' : 'pointer',
+            opacity: isLoading ? 0.8 : 1
+          }}
         >
-          Send Message
+          {isLoading ? 'Sending...' : 'Send Message'}
         </motion.button>
 
-        {status && <p className="status-msg">{status}</p>}
+        {status.text && (
+          <p 
+            className={`status-msg ${status.type}`}
+            style={{
+              color: status.type === 'error' ? '#ef4444' : status.type === 'success' ? '#10b981' : '#3b82f6'
+            }}
+          >
+            {status.text}
+          </p>
+        )}
       </motion.form>
     </div>
   );

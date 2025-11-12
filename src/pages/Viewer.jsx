@@ -4,7 +4,7 @@ import axios from "axios";
 export default function Viewer() {
   const [rooms, setRooms] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5005/api/rooms").then(res => setRooms(res.data));
+    axios.get("https://person-tracking-backend.onrender.com/api/rooms").then(res => setRooms(res.data));
   }, []);
 
   return (

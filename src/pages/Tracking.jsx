@@ -28,7 +28,7 @@ export default function Tracking() {
 
   useEffect(() => {
     // Replace with your backend LAN IP
-    const socket = io("http://localhost:5005");
+    const socket = io("https://person-tracking-backend.onrender.com");
 
     socket.on("connect", () => {
       console.log("✅ Connected to socket server");

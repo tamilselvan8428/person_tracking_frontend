@@ -63,7 +63,7 @@ export default function Admin() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  const API_URL = "http://localhost:5005/api";
+  const API_URL = "https://person-tracking-backend.onrender.com/api";
 
   const fetchRooms = async () => {
     try {

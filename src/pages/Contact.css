@@ -1,29 +1,31 @@
 .contact-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a, #1e3a8a, #312e81);
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0, #cbd5e1);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   padding-top: 80px;
   font-family: "Poppins", sans-serif;
-  color: white;
+  color: #64748b;
 }
 
 .contact-title {
   font-size: 3rem;
-  background: linear-gradient(90deg, #38bdf8, #a78bfa);
+  background: linear-gradient(90deg, #2563eb, #7c3aed);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: glow 2s infinite alternate;
+  margin-bottom: 20px;
+  animation: none;
 }
 
 @keyframes glow {
   0% {
-    text-shadow: 0 0 10px #38bdf8;
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
   }
   100% {
-    text-shadow: 0 0 20px #a78bfa;
+    text-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
   }
 }
 
@@ -32,11 +34,12 @@
   max-width: 600px;
   margin-top: 10px;
   margin-bottom: 40px;
-  color: #cbd5e1;
+  color: #1e293b;
 }
 
 .contact-form {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(241, 245, 249, 0.9);
+  color: #64748b;
   padding: 40px;
   border-radius: 20px;
   width: 90%;
@@ -44,21 +47,35 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   backdrop-filter: blur(8px);
 }
 
 .contact-form input,
 .contact-form textarea {
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
-  border-radius: 10px;
+  width: 100%;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
   padding: 12px 15px;
-  color: white;
+  color: #1e293b;
   font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
   outline: none;
   resize: none;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
 }
 
 .contact-form input:focus,
@@ -67,28 +84,101 @@
 }
 
 .submit-btn {
-  background: linear-gradient(90deg, #38bdf8, #a78bfa);
+  background: linear-gradient(90deg, #2563eb, #7c3aed);
   border: none;
   color: white;
-  padding: 12px;
-  border-radius: 10px;
+  padding: 15px 25px;
+  border-radius: 8px;
   font-size: 1.1rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.submit-btn:hover {
-  background: linear-gradient(90deg, #a78bfa, #38bdf8);
+.submit-btn:hover:not(:disabled) {
+  background: linear-gradient(90deg, #1d4ed8, #6d28d9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 .status-msg {
-  margin-top: 15px;
+  margin: 15px 0 0;
+  padding: 12px 15px;
   text-align: center;
-  color: #93c5fd;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
-*{
-    padding: 0%;
-    margin: 0%;
+
+.status-msg.success {
+  background-color: #ecfdf5;
+  color: #10b981;
+  border: 1px solid #a7f3d0;
+}
+
+.status-msg.error {
+  background-color: #fef2f2;
+  color: #ef4444;
+  border: 1px solid #fecaca;
+}
+
+.status-msg.info {
+  background-color: #eff6ff;
+  color: #3b82f6;
+  border: 1px solid #bfdbfe;
+}
+
+/* General Styles */
+div {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Form Group Styling */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #334155;
+  font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contact-form {
+    width: 95%;
+    padding: 25px;
+  }
+  
+  .contact-title {
+    font-size: 2.2rem;
+  }
+  
+  .contact-subtext {
+    font-size: 1rem;
+    padding: 0 15px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
